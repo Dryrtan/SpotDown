@@ -1,12 +1,15 @@
 FROM node:23-alpine3.20
 LABEL authors="Dryrtan"
 
+ARG VITE_SERVIDOR_API
+ENV VITE_SERVIDOR_API=$VITE_SERVIDOR_API
+
 WORKDIR /app
 RUN mkdir frontend
 COPY ./frontend /app/frontend
 
 RUN cd frontend && npm install && npm run build && npm install -g serve
 
-EXPOSE 3000 3001
+EXPOSE 3000
 
 CMD ["sh", "-c", "serve -s /app/frontend/dist"]
