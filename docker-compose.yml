@@ -1,0 +1,25 @@
+services:
+    spotdown-frontend:
+        container_name: spotdown-frontend
+        build:
+            context: .
+            dockerfile: Dockerfile-frontend
+        ports:
+            - "8080:3000"
+        depends_on:
+          - spotdown-backend
+        environment:
+          - NODE_ENV=production
+          - VITE_SERVIDOR_API=http://IP_LOCAL_OU_REMOTO_BACKEND:3000
+
+    spotdown-backend:
+        container_name: spotdown-backend
+        build:
+            context: .
+            dockerfile: Dockerfile-backend
+        ports:
+            - "3000:3001"
+        environment:
+          - NODE_ENV=production
+          - SPOTIFY_CLIENT_ID=SEU_CLIENT_ID
+          - SPOTIFY_CLIENT_SECRET=SEU_CLIENT_SECRET
