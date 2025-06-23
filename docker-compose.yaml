@@ -3,6 +3,8 @@ services:
     container_name: spotdown-frontend
     build:
       context: .
+      args:
+        - VITE_SERVIDOR_API=http://backend.spotdown.dryrtan.com
       dockerfile: Dockerfile-frontend
     ports:
       - "7500:3000"
