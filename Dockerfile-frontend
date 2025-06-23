@@ -2,13 +2,13 @@ FROM node:23-alpine3.20
 LABEL authors="Dryrtan"
 
 ARG VITE_SERVIDOR_API
-ENV VITE_SERVIDOR_API=$VITE_SERVIDOR_API
 
 WORKDIR /app
 RUN mkdir frontend
 COPY ./frontend /app/frontend
 
 WORKDIR /app/frontend
+RUN echo "VITE_SERVIDOR_API=$VITE_SERVIDOR_API" > .env
 RUN npm install
 RUN npm run build
 RUN npm install -g serve
